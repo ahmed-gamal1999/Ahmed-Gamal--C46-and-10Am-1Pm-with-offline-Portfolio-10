@@ -3608,11 +3608,21 @@ textarea:focus-visible,
 
 .testimonial-card {
   flex: 0 0 auto;
+  height: 100%;
 }
-
+.splide__pagination {
+  bottom: -4.5em;
+}
+.splide__arrows--rtl .splide__arrow--next {
+  left: 0em;
+}
+.splide__arrows--rtl .splide__arrow--prev {
+  right: 0em;
+}
+.splide__arrow {
+}
 @media (min-width: 1024px) {
   .testimonial-card {
-    width: calc(33.333% - 32px);
   }
 }
 
