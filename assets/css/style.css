@@ -3619,12 +3619,6 @@ textarea:focus-visible,
 .splide__arrows--rtl .splide__arrow--prev {
   right: 0em;
 }
-.splide__arrow {
-}
-@media (min-width: 1024px) {
-  .testimonial-card {
-  }
-}
 
 @media (min-width: 640px) and (max-width: 1023px) {
   .testimonial-card {
