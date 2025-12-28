@@ -7,10 +7,10 @@ var closeSettingsBar = document.getElementById("close-settings");
 var scrollToTopBtn = document.getElementById("scroll-to-top");
 
 var savedTheme = localStorage.getItem("themeMode");
-const savedColors = localStorage.getItem("themeColors");
+var savedColors = localStorage.getItem("themeColors");
 
 if (savedColors) {
-  const { primary, secondary, accent } = JSON.parse(savedColors);
+  var { primary, secondary, accent } = JSON.parse(savedColors);
 
   document.documentElement.style.setProperty("--color-primary", primary);
   document.documentElement.style.setProperty("--color-secondary", secondary);
@@ -19,14 +19,35 @@ if (savedColors) {
 
 var savedColor = localStorage.getItem("textColor");
 // ======================= All Color Options ==================
-/* var colorOne = document.querySelector(".theme-color-one");
+var colorOne = document.querySelector(".theme-color-one");
 var colorTwo = document.querySelector(".theme-color-two");
 var colorTheree = document.querySelector(".theme-color-theree");
 var colorFour = document.querySelector(".theme-color-four");
 var colorFive = document.querySelector(".theme-color-five");
-var colorSix = document.querySelector(".theme-color-six"); */
+var colorSix = document.querySelector(".theme-color-six");
 // ======================= All Color Functions ==================
 
+colorOne.addEventListener("click", function () {
+  changeColor("#3b82f6", "#06b6d4", "#22d3ee");
+});
+
+colorTwo.addEventListener("click", function () {
+  changeColor("#10b981", "#059669", "#34d399");
+});
+
+colorTheree.addEventListener("click", function () {
+  changeColor("#ec4899", "#f97316", "#fb923c");
+});
+colorFour.addEventListener("click", function () {
+  changeColor("#6366f1", "#8b5cf6", "#a855f7");
+});
+colorFive.addEventListener("click", function () {
+  changeColor("#ef4444", "#f43f5e", "#fb7185");
+});
+
+colorSix.addEventListener("click", function () {
+  changeColor("#f59e0b", "#ea580c", "#fbbf24");
+});
 function changeColor(primary, secondary, accent) {
   document.documentElement.style.setProperty("--color-primary", primary);
   document.documentElement.style.setProperty("--color-secondary", secondary);
@@ -277,26 +298,26 @@ resetBtn.addEventListener("click", function () {
 // ========================  =======================
 
 document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("contactForm");
-  const fullNameInput = document.getElementById("full-name");
-  const emailInput = document.getElementById("email");
-  const phoneInput = document.getElementById("phone");
-  const projectTypeSelect = document.querySelector(
+  var form = document.getElementById("contactForm");
+  var fullNameInput = document.getElementById("full-name");
+  var emailInput = document.getElementById("email");
+  var phoneInput = document.getElementById("phone");
+  var projectTypeSelect = document.querySelector(
     ".custom-select-contact1 .custom-select"
   );
-  const budgetSelect = document.querySelector(
+  var budgetSelect = document.querySelector(
     ".custom-select-contact2 .custom-select"
   );
-  const projectDetailsTextarea = document.getElementById("project-details");
-  const submitButton = document.getElementById("submit");
+  var projectDetailsTextarea = document.getElementById("project-details");
+  var submitButton = document.getElementById("submit");
 
-  const patterns = {
+  var patterns = {
     name: /^[a-zA-Z\u0600-\u06FF\s]{3,}$/,
     email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     phone: /^(?:\+20|0)?1[0-2,5]\d{8}$/,
   };
 
-  const errorMessages = {
+  var errorMessages = {
     name: "الاسم يجب أن يكون 3 أحرف على الأقل ولا يحتوي على أرقام",
     email: "البريد الإلكتروني غير صحيح",
     phone: "رقم الهاتف يجب أن يكون رقم مصري صحيح",
@@ -304,7 +325,7 @@ document.addEventListener("DOMContentLoaded", function () {
     budget: "يرجى اختيار الميزانية المتوقعة",
   };
 
-  const validationState = {
+  var validationState = {
     name: false,
     email: false,
     phone: false,
@@ -339,58 +360,57 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function validateName() {
-    const value = fullNameInput.value.trim();
-    const isValid = patterns.name.test(value);
+    var value = fullNameInput.value.trim();
+    var isValid = patterns.name.test(value);
     validationState.name = isValid;
     updateInputValidation(fullNameInput, isValid);
     return isValid;
   }
 
   function validateEmail() {
-    const value = emailInput.value.trim();
-    const isValid = patterns.email.test(value);
+    var value = emailInput.value.trim();
+    var isValid = patterns.email.test(value);
     validationState.email = isValid;
     updateInputValidation(emailInput, isValid);
     return isValid;
   }
 
   function validatePhone() {
-    const value = phoneInput.value.trim();
+    var value = phoneInput.value.trim();
     if (value === "") {
       validationState.phone = true;
       updateInputValidation(phoneInput, true);
       return true;
     }
-    const isValid = patterns.phone.test(value);
+    var isValid = patterns.phone.test(value);
     validationState.phone = isValid;
     updateInputValidation(phoneInput, isValid);
     return isValid;
   }
 
   function validateProjectType() {
-    const selectedText =
+    var selectedText =
       projectTypeSelect.querySelector(".selected-text").textContent;
-    const isValid = selectedText !== "اختر نوع المشروع";
+    var isValid = selectedText !== "اختر نوع المشروع";
     validationState.projectType = isValid;
     updateSelectValidation(projectTypeSelect, isValid);
     return isValid;
   }
 
   function validateBudget() {
-    const selectedText =
-      budgetSelect.querySelector(".selected-text").textContent;
-    const isValid = selectedText !== "اختر الميزانية";
+    var selectedText = budgetSelect.querySelector(".selected-text").textContent;
+    var isValid = selectedText !== "اختر الميزانية";
     validationState.budget = isValid;
     updateSelectValidation(budgetSelect, isValid);
     return isValid;
   }
 
   function validateAll() {
-    const isNameValid = validateName();
-    const isEmailValid = validateEmail();
-    const isPhoneValid = validatePhone();
-    const isProjectTypeValid = validateProjectType();
-    const isBudgetValid = validateBudget();
+    var isNameValid = validateName();
+    var isEmailValid = validateEmail();
+    var isPhoneValid = validatePhone();
+    var isProjectTypeValid = validateProjectType();
+    var isBudgetValid = validateBudget();
 
     return (
       isNameValid &&
@@ -442,8 +462,8 @@ document.addEventListener("DOMContentLoaded", function () {
         validationState[key] = false;
       });
 
-      const allInputs = [fullNameInput, emailInput, phoneInput];
-      const allSelects = [projectTypeSelect, budgetSelect];
+      var allInputs = [fullNameInput, emailInput, phoneInput];
+      var allSelects = [projectTypeSelect, budgetSelect];
 
       allInputs.forEach((input) => {
         input.classList.remove(
@@ -479,9 +499,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 document.querySelectorAll(".custom-select").forEach((select) => {
   select.addEventListener("click", function () {
-    const wrapper = this.closest(".custom-select-wrapper");
-    const options = wrapper.querySelector(".custom-options");
-    const arrow = this.querySelector("i");
+    var wrapper = this.closest(".custom-select-wrapper");
+    var options = wrapper.querySelector(".custom-options");
+    var arrow = this.querySelector("i");
 
     document.querySelectorAll(".custom-options").forEach((otherOptions) => {
       if (otherOptions !== options) {
@@ -499,7 +519,7 @@ document.querySelectorAll(".custom-select").forEach((select) => {
     arrow.classList.toggle("fa-chevron-up");
     arrow.classList.toggle("fa-chevron-down");
 
-    const isExpanded = !options.classList.contains("hidden");
+    var isExpanded = !options.classList.contains("hidden");
     this.setAttribute("aria-expanded", isExpanded);
   });
 });
@@ -508,7 +528,7 @@ document.addEventListener("click", function (e) {
   if (!e.target.closest(".custom-select-wrapper")) {
     document.querySelectorAll(".custom-options").forEach((options) => {
       options.classList.add("hidden");
-      const arrow = options.previousElementSibling.querySelector("i");
+      var arrow = options.previousElementSibling.querySelector("i");
       arrow.classList.remove("fa-chevron-up");
       arrow.classList.add("fa-chevron-down");
       options.previousElementSibling.setAttribute("aria-expanded", "false");
@@ -518,18 +538,18 @@ document.addEventListener("click", function (e) {
 
 document.querySelectorAll(".custom-option").forEach((option) => {
   option.addEventListener("click", function () {
-    const value = this.getAttribute("data-value");
-    const wrapper = this.closest(".custom-select-wrapper");
-    const select = wrapper.querySelector(".custom-select");
-    const selectedText = select.querySelector(".selected-text");
+    var value = this.getAttribute("data-value");
+    var wrapper = this.closest(".custom-select-wrapper");
+    var select = wrapper.querySelector(".custom-select");
+    var selectedText = select.querySelector(".selected-text");
 
     selectedText.textContent = value;
     selectedText.classList.remove("text-slate-500", "dark:text-slate-400");
     selectedText.classList.add("text-slate-800", "dark:text-white");
 
-    const options = wrapper.querySelector(".custom-options");
+    var options = wrapper.querySelector(".custom-options");
     options.classList.add("hidden");
-    const arrow = select.querySelector("i");
+    var arrow = select.querySelector("i");
     arrow.classList.remove("fa-chevron-up");
     arrow.classList.add("fa-chevron-down");
     select.setAttribute("aria-expanded", "false");
@@ -538,7 +558,7 @@ document.querySelectorAll(".custom-option").forEach((option) => {
 // ========================  =======================
 // ========================  =======================
 
-/* const testimonials = [
+/* var testimonials = [
   {
     name: "أحمد السعيد",
     role: "مدير شركة التقنية الحديثة",
@@ -647,28 +667,29 @@ nextCard.addEventListener("click", function () {
   i++;
   document.getElementById("testimonials-carousel").innerHTML = cartona;
 }); */
-document.addEventListener("DOMContentLoaded", function () {
-  const carousel = document.getElementById("testimonials-carousel");
-  const cards = document.querySelectorAll(".testimonial-card");
-  const nextBtn = document.getElementById("next-testimonial");
-  const prevBtn = document.getElementById("prev-testimonial");
-  const indicators = document.querySelectorAll(".carousel-indicator");
+
+/* document.addEventListener("DOMContentLoaded", function () {
+  var carousel = document.getElementById("testimonials-carousel");
+  var cards = document.querySelectorAll(".testimonial-card");
+  var nextBtn = document.getElementById("next-testimonial");
+  var prevBtn = document.getElementById("prev-testimonial");
+  var indicators = document.querySelectorAll(".carousel-indicator");
 
   let currentIndex = 0;
   let cardsPerView = getCardsPerView();
 
   function getCardsPerView() {
-    const width = window.innerWidth;
+    var width = window.innerWidth;
     if (width >= 1024) return 3;
     if (width >= 640) return 2;
     return 1;
   }
 
   function updateCarousel() {
-    const cardWidth = cards[0]?.offsetWidth || 0;
-    const gap = 16;
+    var cardWidth = cards[0]?.offsetWidth || 0;
+    var gap = 16;
 
-    const translateX = -(currentIndex * (cardWidth + gap));
+    var translateX = -(currentIndex * (cardWidth + gap));
 
     carousel.style.transform = `translateX(${translateX}px)`;
     updateIndicators();
@@ -676,7 +697,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function updateIndicators() {
     indicators.forEach((indicator, index) => {
-      const isActive = index === currentIndex;
+      var isActive = index === currentIndex;
       indicator.setAttribute("aria-selected", isActive);
       indicator.classList.toggle("bg-accent", isActive);
       indicator.classList.toggle("bg-slate-400", !isActive);
@@ -718,4 +739,25 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   updateCarousel();
+}); */
+document.addEventListener("DOMContentLoaded", function () {
+  new Splide(".splide", {
+    type: "loop",
+    perPage: 3,
+    perMove: 1,
+    gap: "1.5rem",
+    autoplay: true,
+    pauseOnHover: true,
+    arrows: true,
+    pagination: true,
+    direction: "rtl",
+    breakpoints: {
+      1024: {
+        perPage: 2,
+      },
+      640: {
+        perPage: 1,
+      },
+    },
+  }).mount();
 });
